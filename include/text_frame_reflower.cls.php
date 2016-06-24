@@ -82,8 +82,12 @@ class Text_Frame_Reflower extends Frame_Reflower {
     if ( $frame_width <= $available_width )
       return false;
 
-    // split the text into words
-    $words = preg_split('/([\s-]+)/u', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+    // // split the text into words
+    // $words = preg_split('/([\s-]+)/u', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+    // $wc = count($words);
+    //解決DOMPDF中文自動換行的問題；@phpdb.net
+    preg_match_all('/./u', $text, $array);
+    $words = $array[0];
     $wc = count($words);
 
     // Determine the split point
